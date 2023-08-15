@@ -1,9 +1,4 @@
-# Speed Run 4
+# Grape Hub
 ```lua
-loadstring(game:HttpGet("e"))();
-```
-
-# Other Game Here
-```lua
-loadstring(game:HttpGet("e"))();
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobExploits/Scripts-ROBLOX/main/MainScript.lua"))();
 ```
