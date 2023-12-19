@@ -1,0 +1,10 @@
+-- All credit goes to AlSploit on this one discord.gg/4hTNjStp45
+local PlaceID = game.PlaceId
+
+if PlaceID == 13772394625 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/AlSploit/main/BladeBall"))()
+elseif PlaceID == 8542259458 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/AlSploit/main/Skywars"))()
+elseif PlaceID ~= 6872265039 and PlaceID ~= 8542259458 and PlaceID ~= 13772394625  then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/AlSploit/main/Bedwars"))()
+end
