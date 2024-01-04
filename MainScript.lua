@@ -296,6 +296,7 @@ TeamTab:AddButton({
 })
 
 TeamTab:AddLabel("Neutral + Criminal coming soon.")
+ExploitsTab:AddLabel("Warning: This will make you lag the longer you have it enabled!")
 
 InfoTab:AddButton({
 	Name = "Discord (Copys To Clipboard)",
