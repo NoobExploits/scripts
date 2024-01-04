@@ -54,7 +54,7 @@ GunTab:AddDropdown({
             end)
         end
 
-		local CurrentCFrame = gmae.Players.LocalPlayer.Character.PrimaryPart.CFrame
+		local CurrentCFrame = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
 
         function GetGun(Item,Ignore)
             local saved = game:GetService("Players").LocalPlayer.Character:GetPrimaryPartCFrame()
@@ -72,7 +72,7 @@ GunTab:AddDropdown({
                 until plr.Backpack:FindFirstChild(Item.Name) or plr.Character:FindFirstChild(Item.Name)
             end
             if Ignore ~= true then
-                plr.Character:SetPrimaryPartCFrame(Ignore or saved or CurrentCFrame)
+                plr.Character:SetPrimaryPartCFrame(CurrentCFrame or saved or Ignore)
             end
         end
 
