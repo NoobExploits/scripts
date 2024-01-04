@@ -215,7 +215,7 @@ GunTab:AddDropdown({
 })
 
 ExploitsTab:AddToggle({
-	Name = "Spam Sounds", Default = false, Save = true, Flag = "autocollect",
+	Name = "Spam Sounds", Default = false, Save = true, Flag = "spamsounds",
 	Callback = function(bool)
 		getgenv().spamSoond = bool
         if bool then
