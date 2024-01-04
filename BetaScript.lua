@@ -232,7 +232,7 @@ GunTab:AddDropdown({
 			module["MaxAmmo"] = math.huge
 			module["CurrentAmmo"] = math.huge
 			module["StoredAmmo"] = math.huge
-			module["Bullets"] = math.huge
+			module["Bullets"] = 5000
 			module["FireRate"] = 0.000000001
 			module["Spread"] = 0
 			module["Range"] = math.huge
