@@ -72,7 +72,7 @@ GunTab:AddDropdown({
                 until plr.Backpack:FindFirstChild(Item.Name) or plr.Character:FindFirstChild(Item.Name)
             end
             if Ignore ~= true then
-                plr.Character:SetPrimaryPartCFrame(saved or CurrentCFrame or Ignore)
+                plr.Character:SetPrimaryPartCFrame(Ignore or saved or CurrentCFrame)
             end
         end
 
