@@ -45,9 +45,18 @@ local Window = OrionLib:MakeWindow({Name = "Impact Hub | Prison Life", HidePremi
 local LocalPlrTab = Window:MakeTab({Name = "Local Player", Icon = "rbxassetid://15862434941",PremiumOnly = false })
 local GunTab = Window:MakeTab({Name = "Guns", Icon = "rbxassetid://15862513462",PremiumOnly = false })
 local TPTab = Window:MakeTab({Name = "Teleport", Icon = "rbxassetid://15841341821",PremiumOnly = false })
+local GameTab = Window:MakeTab({Name = "Game", Icon = "rbxassetid://15885360708",PremiumOnly = false })
 local TeamTab = Window:MakeTab({Name = "Teams", Icon = "rbxassetid://15862677356",PremiumOnly = false })
 local ExploitsTab = Window:MakeTab({Name = "Exploits", Icon = "rbxassetid://15841340999",PremiumOnly = false })
 local InfoTab = Window:MakeTab({Name = "Info", Icon = "rbxassetid://15841490359",PremiumOnly = false })
+
+
+GameTab:AddButton({
+	Name = "Remove Doors",
+	Callback = function()
+		game:GetService("Workspace").Doors:Destroy()
+  	end    
+})
 
 ExploitsTab:AddToggle({
 	Name = "Kill Aura", Default = false, Save = true, Flag = "killaura_pl",
@@ -259,6 +268,21 @@ LocalPlrTab:AddSlider({
 	Min = 16, Max = 250, Default = 16, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "walkspeed_pl", ValueName = "Speed",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+LocalPlrTab:AddSlider({
+	Name = "Hip Height",
+	Min = 0, Max = 500, Default = 0, Color = Color3.fromRGB(233, 156, 69), Increment = 1, Save = true, Flag = "hipheight_pl", ValueName = "Hip Height",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.HipHeight = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Disable Auto Jump", Default = false, Save = true, Flag = "autojump_pl",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = Value
 	end    
 })
 
