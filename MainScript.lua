@@ -1,4 +1,5 @@
 getgenv().spamSoond = false
+getgenv().ka = false
 
 function spamSound()
 	while getgenv().spamSoond == true do
@@ -21,6 +22,23 @@ function spamSound()
 	end
 end
 
+function killAura()
+	spawn(function()
+		while getgenv().ka == true do
+			for _,player in next,game:GetService'Players':GetPlayers() do
+				if player ~= game:GetService'Players'.LocalPlayer then
+					local args = {
+						[1] = player
+					}
+				
+					game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
+				end 
+			end
+					wait()
+		end
+	end)
+end
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Impact Hub | Prison Life", HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
 
@@ -30,6 +48,16 @@ local TPTab = Window:MakeTab({Name = "Teleport", Icon = "rbxassetid://1584134182
 local TeamTab = Window:MakeTab({Name = "Teams", Icon = "rbxassetid://15862677356",PremiumOnly = false })
 local ExploitsTab = Window:MakeTab({Name = "Exploits", Icon = "rbxassetid://15841340999",PremiumOnly = false })
 local InfoTab = Window:MakeTab({Name = "Info", Icon = "rbxassetid://15841490359",PremiumOnly = false })
+
+ExploitsTab:AddToggle({
+	Name = "Kill Aura", Default = false, Save = true, Flag = "killaura_pl",
+	Callback = function(bool)
+		getgenv().ka = bool
+        if bool then
+            killAura()
+        end
+	end    
+})
 
 GunTab:AddDropdown({
 	Name = "Give Gun",
@@ -56,6 +84,7 @@ GunTab:AddDropdown({
 
         function GetGun(Item,Ignore)
             local saved = game:GetService("Players").LocalPlayer.Character:GetPrimaryPartCFrame()
+			print(saved)
             if workspace.Prison_ITEMS.giver:FindFirstChild(Item) and workspace.Prison_ITEMS.giver:FindFirstChild(Item):FindFirstChild("ITEMPICKUP") then
                 Item =workspace.Prison_ITEMS.giver:FindFirstChild(Item)
                 local ohInstance1 = Item:FindFirstChildOfClass("Part")
@@ -215,7 +244,7 @@ GunTab:AddDropdown({
 })
 
 ExploitsTab:AddToggle({
-	Name = "Spam Sounds", Default = false, Save = true, Flag = "spamsounds",
+	Name = "Spam Sounds", Default = false, Save = true, Flag = "spamsounds_pl",
 	Callback = function(bool)
 		getgenv().spamSoond = bool
         if bool then
@@ -227,7 +256,7 @@ ExploitsTab:AddLabel("Abuses RFE being disabled.")
 
 LocalPlrTab:AddSlider({
 	Name = "Walkspeed",
-	Min = 16, Max = 250, Default = 16, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "walkspeed", ValueName = "Speed",
+	Min = 16, Max = 250, Default = 16, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "walkspeed_pl", ValueName = "Speed",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
 	end    
@@ -235,7 +264,7 @@ LocalPlrTab:AddSlider({
 
 LocalPlrTab:AddSlider({
 	Name = "JumpPower",
-	Min = 50, Max = 300, Default = 50, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "jumppower", ValueName = "JumpPower",
+	Min = 50, Max = 300, Default = 50, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "jumppower_pl", ValueName = "JumpPower",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 	end    
