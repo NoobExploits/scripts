@@ -1,4 +1,3 @@
--- All credit goes to AlSploit on this one discord.gg/4hTNjStp45
 local PlaceID = game.PlaceId
 
 if PlaceID == 73885730 then
