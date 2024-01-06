@@ -18,7 +18,7 @@ function spamSound()
 		sound:Remove()
 		get_descendants = nil
 		sound_stop = nil
-        wait()
+        task.wait()
 	end
 end
 
@@ -34,7 +34,7 @@ function killAura()
 					game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
 				end 
 			end
-					wait()
+			task.wait()
 		end
 	end)
 end
@@ -272,6 +272,14 @@ LocalPlrTab:AddSlider({
 })
 
 LocalPlrTab:AddSlider({
+	Name = "JumpPower",
+	Min = 50, Max = 300, Default = 50, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "jumppower_pl", ValueName = "JumpPower",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+LocalPlrTab:AddSlider({
 	Name = "Hip Height",
 	Min = 0, Max = 500, Default = 0, Color = Color3.fromRGB(233, 156, 69), Increment = 1, Save = true, Flag = "hipheight_pl", ValueName = "Hip Height",
 	Callback = function(Value)
@@ -283,14 +291,6 @@ Tab:AddToggle({
 	Name = "Disable Auto Jump", Default = false, Save = true, Flag = "autojump_pl",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = Value
-	end    
-})
-
-LocalPlrTab:AddSlider({
-	Name = "JumpPower",
-	Min = 50, Max = 300, Default = 50, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "jumppower_pl", ValueName = "JumpPower",
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 	end    
 })
 
