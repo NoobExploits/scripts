@@ -279,6 +279,13 @@ LocalPlrTab:AddSlider({
 	end    
 })
 
+LocalPlrTab:AddToggle({
+	Name = "Disable Auto Jump", Default = false, Save = true, Flag = "autojump_pl",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = Value
+	end    
+})
+
 LocalPlrTab:AddSlider({
 	Name = "Hip Height",
 	Min = 0, Max = 500, Default = 0, Color = Color3.fromRGB(233, 156, 69), Increment = 1, Save = true, Flag = "hipheight_pl", ValueName = "Hip Height",
