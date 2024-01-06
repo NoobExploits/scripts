@@ -287,13 +287,6 @@ LocalPlrTab:AddSlider({
 	end    
 })
 
-Tab:AddToggle({
-	Name = "Disable Auto Jump", Default = false, Save = true, Flag = "autojump_pl",
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = Value
-	end    
-})
-
 TPTab:AddButton({
 	Name = "Criminal Base",
 	Callback = function()
