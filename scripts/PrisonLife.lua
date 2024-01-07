@@ -559,6 +559,7 @@ InfoTab:AddLabel("Join the discord to support us!")
 InfoTab:AddLabel("We also take suggestions.")
 InfoTab:AddLabel("If you find any bugs just DM me.")
 
+InfoTab:AddLabel("Last updated: 1/7/2023")
 
 InfoTab:AddButton({
 	Name = "Delete UI",
