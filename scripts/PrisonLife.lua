@@ -234,10 +234,10 @@ GunTab:AddDropdown({
             local saved = game:GetService("Players").LocalPlayer.Character:GetPrimaryPartCFrame()
             if workspace.Prison_ITEMS.single:FindFirstChild(Item) and workspace.Prison_ITEMS.single:FindFirstChild(Item):FindFirstChild("ITEMPICKUP") then
                 Item =workspace.Prison_ITEMS.single:FindFirstChild(Item)
-                local ohInstance1 = Item:FindFirstChildOfClass("Part")
+                local ohInstance1 = Item:FindFirstChildOfClass("Part") or Item:FindFirstChildOfClass("UnionOperation")
                 MoveTo(CFrame.new(ohInstance1.Position))
                 repeat wait()
-                    local ohInstance1 = Item:FindFirstChildOfClass("Part")
+                    local ohInstance1 = Item:FindFirstChildOfClass("Part") or Item:FindFirstChildOfClass("UnionOperation")
                     MoveTo(CFrame.new(ohInstance1.Position))
                     task.spawn(function()
                         workspace.Remote.ItemHandler:InvokeServer(ohInstance1)
