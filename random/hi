@@ -1,1 +1,19 @@
+local Players = game:GetService("Players")
 
+    local function highlightPlayer(player)
+        local character = player.Character
+        if character then
+            local highlight = Instance.new("Highlight")
+            highlight.Parent = character
+            highlight.Adornee = character
+            highlight.FillTransparency = 0.5  -- Adjust as needed
+            highlight.OutlineTransparency = 0.5  -- Adjust as needed
+            highlight.OutlineColor = Color3.fromRGB(255, 255, 0)  -- Yellow highlight
+        end
+    end
+
+    Players.PlayerAdded:Connect(highlightPlayer)
+
+    for _, player in pairs(Players:GetPlayers()) do
+        highlightPlayer(player)
+    end
