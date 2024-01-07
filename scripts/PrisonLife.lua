@@ -161,6 +161,7 @@ GunTab:AddDropdown({
 	Options = {"Remington 870", "AK-47", "M9", "M4AI", "Riot Sheild"},
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
         function unsit()
             plr.Character:FindFirstChildOfClass("Humanoid").Sit = false
@@ -200,6 +201,8 @@ GunTab:AddDropdown({
         end
 
         GetGun(v,true)
+		wait(.25)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
 
@@ -209,6 +212,7 @@ GunTab:AddDropdown({
 	Options = {"Key card","Crude Knife", "Hammer"},
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
         function unsit()
             plr.Character:FindFirstChildOfClass("Humanoid").Sit = false
@@ -247,6 +251,8 @@ GunTab:AddDropdown({
         end
 
         GetItem(v,true)
+		wait(.25)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
 
