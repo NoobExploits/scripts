@@ -66,7 +66,7 @@ function killAura()
 					game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
 				end 
 			end
-			task.wait()
+			wait()
 		end
 	end)
 end
