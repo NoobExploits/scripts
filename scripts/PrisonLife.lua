@@ -1,5 +1,27 @@
 getgenv().spamSoond = false
+getgenv().stopsounds = false
 getgenv().ka = false
+
+function stopSound()
+	while getgenv().stopsounds == true do
+		local class_check = game.IsA
+		local sound = Instance.new('Sound')
+		local sound_stop = sound.Stop
+		local get_descendants = game.GetDescendants
+
+		for i,v in next, get_descendants(game) do 
+			if class_check(v,"Sound") then
+				sound_stop(v)
+			end
+		end
+
+		get_descendants = nil
+		sound:Remove()
+		get_descendants = nil
+		sound_stop = nil
+        task.wait()
+	end
+end
 
 function spamSound()
 	while getgenv().spamSoond == true do
@@ -34,7 +56,7 @@ function killAura()
 					game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
 				end 
 			end
-			wait()
+			task.wait()
 		end
 	end)
 end
@@ -50,6 +72,22 @@ local TeamTab = Window:MakeTab({Name = "Teams", Icon = "rbxassetid://15862677356
 local ExploitsTab = Window:MakeTab({Name = "Exploits", Icon = "rbxassetid://15841340999",PremiumOnly = false })
 local InfoTab = Window:MakeTab({Name = "Info", Icon = "rbxassetid://15841490359",PremiumOnly = false })
 
+GameTab:AddButton({
+	Name = "Open Gate",
+	Callback = function()
+--		local args = { [1] = workspace.Prison_ITEMS.buttons:FindFirstChild("Prison Gate"):FindFirstChild("Prison Gate") }
+--		workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+		local function getPlayerCFrame()
+			return game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+		end
+
+		local currentCframe = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+		local gate = game:GetService("Workspace")["Prison_ITEMS"].buttons["Prison Gate"]["Prison Gate"]
+		game.Players.LocalPlayer.Character.PrimaryPart.CFrame = gate.CFrame
+		wait(5)
+		game.Players.LocalPlayer.Character.PrimaryPart.CFrame = currentCframe
+  	end    
+})
 
 GameTab:AddButton({
 	Name = "Remove Doors",
@@ -242,7 +280,7 @@ GunTab:AddDropdown({
 			module["MaxAmmo"] = math.huge
 			module["CurrentAmmo"] = math.huge
 			module["StoredAmmo"] = math.huge
-			module["Bullets"] = 15
+			module["Bullets"] = 18
 			module["FireRate"] = 0.0000001
 			module["Spread"] = 0
 			module["Range"] = math.huge
@@ -261,6 +299,15 @@ ExploitsTab:AddToggle({
         end
 	end    
 })
+ExploitsTab:AddToggle({
+	Name = "Stop Sounds", Default = false, Save = true, Flag = "stopsounds_pl",
+	Callback = function(bool)
+		getgenv().stopSound = bool
+        if bool then
+            stopSound()
+        end
+	end    
+})
 ExploitsTab:AddLabel("Abuses RFE being disabled.")
 
 LocalPlrTab:AddSlider({
@@ -273,16 +320,9 @@ LocalPlrTab:AddSlider({
 
 LocalPlrTab:AddSlider({
 	Name = "JumpPower",
-	Min = 50, Max = 300, Default = 50, Color = Color3.fromRGB(129, 245, 56), Increment = 1, Save = true, Flag = "jumppower_pl", ValueName = "JumpPower",
+	Min = 50, Max = 300, Default = 50, Color = Color3.fromRGB(73, 122, 214), Increment = 1, Save = true, Flag = "jumppower_pl", ValueName = "JumpPower",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-	end    
-})
-
-LocalPlrTab:AddToggle({
-	Name = "Disable Auto Jump", Default = false, Save = true, Flag = "autojump_pl",
-	Callback = function(Value)
-		game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = Value
 	end    
 })
 
@@ -291,6 +331,13 @@ LocalPlrTab:AddSlider({
 	Min = 0, Max = 500, Default = 0, Color = Color3.fromRGB(233, 156, 69), Increment = 1, Save = true, Flag = "hipheight_pl", ValueName = "Hip Height",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.HipHeight = Value
+	end    
+})
+
+LocalPlrTab:AddToggle({
+	Name = "Auto Jump", Default = true, Save = true, Flag = "autojump_pl",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.AutoJumpEnabled = Value
 	end    
 })
 
