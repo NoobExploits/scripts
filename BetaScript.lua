@@ -2,6 +2,26 @@ getgenv().spamSoond = false
 getgenv().stopsounds = false
 getgenv().ka = false
 
+local LocalPlayer = game.Players.LocalPlayer
+-- yes i stole this from alsploit cry me a river i was to lazy to write it all its just one thing and it doesnt even do anything basically
+task.spawn(function()
+	if not makefolder then
+		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
+	end
+
+	if not writefile then
+		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
+	end
+
+	if not readfile then
+		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
+	end
+
+	if not isfile then
+		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
+	end
+end)
+
 function stopSound()
 	while getgenv().stopsounds == true do
 		local class_check = game.IsA
@@ -28,14 +48,11 @@ function spamSound()
 	while getgenv().spamSoond == true do
 		local class_check = game.IsA
 		local sound = Instance.new('Sound')
-		sound.SoundId = "rbxassetid://133116870"
 		local sound_stop = sound.Play
-		sound.SoundId = "rbxassetid://133116870"
 		local get_descendants = game.GetDescendants
 
 		for i,v in next, get_descendants(game) do 
 			if class_check(v,"Sound") then
-				v.SoundId = "rbxassetid://133116870"
 				sound_stop(v)
 			end
 		end
@@ -79,17 +96,43 @@ local InfoTab = Window:MakeTab({Name = "Info", Icon = "rbxassetid://15841490359"
 GameTab:AddButton({
 	Name = "Open Gate",
 	Callback = function()
---		local args = { [1] = workspace.Prison_ITEMS.buttons:FindFirstChild("Prison Gate"):FindFirstChild("Prison Gate") }
---		workspace.Remote.ItemHandler:InvokeServer(unpack(args))
-		local function getPlayerCFrame()
-			return game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		local args = { [1] = workspace.Prison_ITEMS.buttons:FindFirstChild("Prison Gate"):FindFirstChild("Prison Gate") }
+		local gate = game.Workspace["Prison_ITEMS"].buttons["Prison Gate"]["Prison Gate"]
+		
+		
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = gate.CFrame
+		wait(.2)
+		workspace.Remote.ItemHandler:InvokeServer(unpack(args))
+		wait(.1)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
+  	end    
+})
+
+GameTab:AddButton({
+	Name = "Destroy Toilets",
+	Callback = function()
+		for i,v in pairs(game:GetService("Workspace")["Prison_Cellblock"]["Cells_B"]:GetDescendants()) do
+			if v.Name == "Health" and v.Parent then
+				v.Parent:Destroy()
+			end
 		end
 
-		local currentCframe = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
-		local gate = game:GetService("Workspace")["Prison_ITEMS"].buttons["Prison Gate"]["Prison Gate"]
-		game.Players.LocalPlayer.Character.PrimaryPart.CFrame = gate.CFrame
-		wait(5)
-		game.Players.LocalPlayer.Character.PrimaryPart.CFrame = currentCframe
+        for i,v in pairs(game:GetService("Workspace")["Prison_Cellblock"]["Cells_A"]:GetDescendants()) do
+			if v.Name == "Health" and v.Parent then
+				v.Parent:Destroy()
+			end
+		end
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Nexus",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(893.334778, 99.9899826, 2386.13208, 0.999913335, 0, -0.0131643685, 0, 1, 0, 0.0131643685, 0, 0.999913335)
+		
+		you.CFrame = location
   	end    
 })
 
@@ -97,6 +140,8 @@ GameTab:AddButton({
 	Name = "Remove Doors",
 	Callback = function()
 		game:GetService("Workspace").Doors:Destroy()
+		workspace.Prison_Cellblock.doors:Destroy()
+		
   	end    
 })
 
@@ -345,6 +390,42 @@ LocalPlrTab:AddToggle({
 	end    
 })
 
+GameTab:AddButton({
+	Name = "Always Day",
+	Callback = function()
+        while true do
+			game.Lighting.ClockTime = 6.8
+			game.Lighting.Brightness = 1
+			game.Lighting.FogEnd = 1400
+			game.Lighting.FogStart = 800
+			game.Lighting.FogColor = Color3.new(135, 184, 214)
+			game.Lighting.OutdoorAmbient = Color3.new(222, 222, 222)
+			wait(.1)
+		end
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Hiding Spot",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(299.237854, 208.056396, 3610.72754, 0.99927485, 5.90756777e-10, 0.038076099, -5.77617731e-10, 1, -3.56074586e-10, -0.038076099, 3.33822942e-10, 0.99927485)
+		
+		you.CFrame = location
+  	end    
+})
+
+
+TPTab:AddButton({
+	Name = "Under Bridge",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(-70.1040802, 11.0993261, 1321.80713, -0.803904712, -3.27944205e-09, -0.594758093, -2.33716602e-09, 1, -2.35487874e-09, 0.594758093, -5.03049602e-10, -0.803904712)
+		
+		you.CFrame = location
+  	end    
+})
+
 TPTab:AddButton({
 	Name = "Criminal Base",
 	Callback = function()
@@ -388,19 +469,46 @@ TPTab:AddButton({
 TeamTab:AddButton({
 	Name = "Cop",
 	Callback = function()
-        workspace.Remote.TeamEvent:FireServer("Bright blue")
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		
+		workspace.Remote.TeamEvent:FireServer("Bright blue")
+		wait(1.5)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
 
 TeamTab:AddButton({
 	Name = "Prisoner",
 	Callback = function()
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
         workspace.Remote.TeamEvent:FireServer("Bright orange")
+		wait(1.5)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
 
-TeamTab:AddLabel("Neutral + Criminal coming soon.")
-ExploitsTab:AddLabel("Warning: This will make you lag the longer you have it enabled!")
+TPTab:AddButton({
+	Name = "Neutral Spawn Locations",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(877.398315, 27.7899818, 2352.80005, -0.000709146087, -2.35237468e-10, -0.999999762, -1.38322492e-10, 1, -2.35139436e-10, 0.999999762, 1.38155709e-10, -0.000709146087)
+		
+		you.CFrame = location
+  	end    
+})
+
+TeamTab:AddButton({
+	Name = "Criminal",
+	Callback = function()
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		local location =  CFrame.new(-324.440582, 54.174263, 1850.27734, -0.424231559, -3.1885655e-08, -0.905553758, -5.62539242e-08, 1, -8.85752538e-09, 0.905553758, 4.71833097e-08, -0.424231559)
+		
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
+		wait(3.5)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
+  	end    
+})
 
 InfoTab:AddButton({
 	Name = "Discord (Copys To Clipboard)",
