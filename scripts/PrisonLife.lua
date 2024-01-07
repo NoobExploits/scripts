@@ -206,7 +206,7 @@ GunTab:AddDropdown({
 GunTab:AddDropdown({
 	Name = "Give Item",
 	Default = "",
-	Options = {"Crude Knife", "Hammer"},
+	Options = {"Key card","Crude Knife", "Hammer"},
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
 
