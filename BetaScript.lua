@@ -202,7 +202,7 @@ GunTab:AddDropdown({
         end
 
         GetGun(v,true)
-		wait(.5)
+		wait(.25)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
