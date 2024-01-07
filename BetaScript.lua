@@ -162,6 +162,8 @@ GunTab:AddDropdown({
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
 
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
         function unsit()
             plr.Character:FindFirstChildOfClass("Humanoid").Sit = false
         end   
@@ -200,13 +202,15 @@ GunTab:AddDropdown({
         end
 
         GetGun(v,true)
+		wait(.5)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
 
 GunTab:AddDropdown({
 	Name = "Give Item",
 	Default = "",
-	Options = {"Crude Knife", "Hammer"},
+	Options = {"Key card","Crude Knife", "Hammer"},
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
 
@@ -400,7 +404,7 @@ GameTab:AddButton({
 			game.Lighting.FogStart = 800
 			game.Lighting.FogColor = Color3.new(135, 184, 214)
 			game.Lighting.OutdoorAmbient = Color3.new(222, 222, 222)
-			wait(.1)
+			wait(0.001)
 		end
   	end    
 })
@@ -509,6 +513,10 @@ TeamTab:AddButton({
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
+
+TeamTab:AddLabel("Neutral coming soon.")
+ExploitsTab:AddLabel("Warning: This will make you lag the longer you have it enabled!")
+ExploitsTab:AddLabel("Stop sounds is broken.")
 
 InfoTab:AddButton({
 	Name = "Discord (Copys To Clipboard)",
