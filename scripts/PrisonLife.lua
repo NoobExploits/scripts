@@ -540,7 +540,7 @@ TeamTab:AddButton({
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
 		wait(4.25)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
-  	end    
+  	end
 })
 
 TeamTab:AddLabel("Neutral coming soon.")
@@ -554,6 +554,11 @@ InfoTab:AddButton({
         toclipboard("https://discord.gg/PDxxpQ3nqm")
   	end    
 })
+
+InfoTab:AddLabel("Join the discord to support us!")
+InfoTab:AddLabel("We also take suggestions.")
+InfoTab:AddLabel("If you find any bugs just DM me.")
+
 
 InfoTab:AddButton({
 	Name = "Delete UI",
