@@ -17,6 +17,7 @@ function stopSound()
 
 		get_descendants = nil
 		sound:Remove()
+		sound = nil 
 		get_descendants = nil
 		sound_stop = nil
         task.wait()
