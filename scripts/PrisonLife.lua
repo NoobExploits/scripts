@@ -400,7 +400,7 @@ GameTab:AddButton({
 			game.Lighting.FogStart = 800
 			game.Lighting.FogColor = Color3.new(135, 184, 214)
 			game.Lighting.OutdoorAmbient = Color3.new(222, 222, 222)
-			wait(.1)
+			wait(0.001)
 		end
   	end    
 })
