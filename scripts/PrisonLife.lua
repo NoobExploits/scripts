@@ -5,10 +5,10 @@ getgenv().ka = false
 local LocalPlayer = game.Players.LocalPlayer
 -- yes i stole this from alsploit cry me a river i was to lazy to write it all its just one thing and it doesnt even do anything basically
 task.spawn(function()
-	if not makefolder then LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-	if not writefile then LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-	if not readfile then LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-	if not isfile then LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not makefolder then LocalPlayer:Kick("Your executor does not support making folders saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not writefile then LocalPlayer:Kick("Your executor does not support writing folders?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not readfile then LocalPlayer:Kick("Your executor does not support reading files?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not isfile then LocalPlayer:Kick("Your executor does not support returning files?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
 end)
 
 function stopSound()
@@ -493,14 +493,52 @@ TPTab:AddButton({
   	end    
 })
 
+TPTab:AddButton({
+	Name = "Cafeteria",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(931.542542, 99.9899368, 2294.22583, -0.999999285, 4.91239653e-08, 0.00120098412, 4.91538081e-08, 1, 2.48178331e-08, -0.00120098412, 2.4876849e-08, -0.999999285)
+		
+		you.CFrame = location
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Kitchen",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(919.5354, 99.9899368, 2233.21289, -0.999982774, -1.91831422e-08, 0.00587368105, -1.87098905e-08, 1, 8.06266911e-08, -0.00587368105, 8.05154059e-08, -0.999982774)
+		
+		you.CFrame = location
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Neutral Spawn Locations",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(877.398315, 27.7899818, 2352.80005, -0.000709146087, -2.35237468e-10, -0.999999762, -1.38322492e-10, 1, -2.35139436e-10, 0.999999762, 1.38155709e-10, -0.000709146087)
+		
+		you.CFrame = location
+  	end    
+})
+
+-- TURNS YOU INTO A CRIMINAL
 TeamTab:AddButton({
 	Name = "Criminal",
 	Callback = function()
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		local location =  CFrame.new(-324.440582, 54.174263, 1850.27734, -0.424231559, -3.1885655e-08, -0.905553758, -5.62539242e-08, 1, -8.85752538e-09, 0.905553758, 4.71833097e-08, -0.424231559)
 		
+		OrionLib:MakeNotification({
+			Name = "Note!",
+			Content = "It will take 5 seconds for you to become a criminal and teleport you back!",
+			Image = "rbxassetid://15910982486",
+			Time = 5
+		})
+
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
-		wait(3.5)
+		wait(4.25)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
