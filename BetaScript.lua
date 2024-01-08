@@ -60,10 +60,10 @@ function killAura()
 			for _,player in next,game:GetService'Players':GetPlayers() do
 				if player ~= game:GetService'Players'.LocalPlayer then
 					local args = { [1] = player }
-					local Distance = (_.Character:FindFirstChildOfClass("Part").Position - game.Players.LocalPlayer.Character:FindFirstChildOFClass("Part").Position).magnitude
+					local Distance = (player.Character:FindFirstChildOfClass("Part").Position - game.Players.LocalPlayer.Character:FindFirstChildOFClass("Part").Position).magnitude
 				
 					if Distance <= 17 then
-						for _ = 1,25 do
+						for player = 1,25 do
 							game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
 						end
 					end
