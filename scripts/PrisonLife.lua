@@ -59,11 +59,14 @@ function killAura()
 		while getgenv().ka == true do
 			for _,player in next,game:GetService'Players':GetPlayers() do
 				if player ~= game:GetService'Players'.LocalPlayer then
-					local args = {
-						[1] = player
-					}
+					local args = { [1] = player }
+					local Distance = (player.Character:FindFirstChildOfClass("Part").Position - game.Players.LocalPlayer.Character:FindFirstChildOfClass("Part").Position).magnitude
 				
-					game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
+					if Distance <= 17 then
+						for player = 1,25 do
+							game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
+						end
+					end
 				end 
 			end
 			wait()
@@ -299,10 +302,10 @@ GunTab:AddDropdown({
 			module["MaxAmmo"] = math.huge
 			module["CurrentAmmo"] = math.huge
 			module["StoredAmmo"] = math.huge
-			module["FireRate"] = 0.000001
-			module["Spread"] = 0
-			module["Range"] = math.huge
-			module["ReloadTime"] = 0.000001
+			module["FireRate"] = 0.01
+			module["Spread"] = 1
+			module["Range"] = 500
+			module["ReloadTime"] = 0.01
 			module["AutoFire"] = true
 		end
 	end    
@@ -507,17 +510,17 @@ TPTab:AddButton({
 	Name = "Kitchen",
 	Callback = function()
         local you = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local location = CFrame.new(919.5354, 99.9899368, 2233.21289, -0.999982774, -1.91831422e-08, 0.00587368105, -1.87098905e-08, 1, 8.06266911e-08, -0.00587368105, 8.05154059e-08, -0.999982774)
+		local location = CFrame.new(692.41095, 101.476959, 2356.29834, -0.00726743788, 0.00668678479, 0.999951243, -1.0504421e-05, 0.999977648, -0.00668703718, -0.999973595, -5.90996169e-05, -0.00726720458)
 		
 		you.CFrame = location
   	end    
 })
 
 TPTab:AddButton({
-	Name = "Neutral Spawn Locations",
+	Name = "Glitch Room",
 	Callback = function()
         local you = game.Players.LocalPlayer.Character.HumanoidRootPart
-		local location = CFrame.new(877.398315, 27.7899818, 2352.80005, -0.000709146087, -2.35237468e-10, -0.999999762, -1.38322492e-10, 1, -2.35139436e-10, 0.999999762, 1.38155709e-10, -0.000709146087)
+		local location = CFrame.new(919.5354, 99.9899368, 2233.21289, -0.999982774, -1.91831422e-08, 0.00587368105, -1.87098905e-08, 1, 8.06266911e-08, -0.00587368105, 8.05154059e-08, -0.999982774)
 		
 		you.CFrame = location
   	end    
