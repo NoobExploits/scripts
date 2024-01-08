@@ -5,21 +5,10 @@ getgenv().ka = false
 local LocalPlayer = game.Players.LocalPlayer
 -- yes i stole this from alsploit cry me a river i was to lazy to write it all its just one thing and it doesnt even do anything basically
 task.spawn(function()
-	if not makefolder then
-		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
-	end
-
-	if not writefile then
-		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
-	end
-
-	if not readfile then
-		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
-	end
-
-	if not isfile then
-		LocalPlayer:Kick("Your executor does not support folder saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm")
-	end
+	if not makefolder then LocalPlayer:Kick("Your executor does not support making folders saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not writefile then LocalPlayer:Kick("Your executor does not support writing folders?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not readfile then LocalPlayer:Kick("Your executor does not support reading files?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
+	if not isfile then LocalPlayer:Kick("Your executor does not support returning files?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
 end)
 
 function stopSound()
@@ -70,11 +59,12 @@ function killAura()
 		while getgenv().ka == true do
 			for _,player in next,game:GetService'Players':GetPlayers() do
 				if player ~= game:GetService'Players'.LocalPlayer then
-					local args = {
-						[1] = player
-					}
+					local args = { [1] = player }
+					local Distance = (_.Character:FindFirstChildOfClass("Part").Position - game.Players.LocalPlayer.Character:FindFirstChildOFClass("Part").Position).magnitude
 				
-					game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
+					if Distance <= 17 do
+						game:GetService('ReplicatedStorage').meleeEvent:FireServer(unpack(args))
+					end
 				end 
 			end
 			task.wait()
@@ -161,7 +151,6 @@ GunTab:AddDropdown({
 	Options = {"Remington 870", "AK-47", "M9", "M4AI", "Riot Sheild"},
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
-
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
         function unsit()
@@ -213,6 +202,7 @@ GunTab:AddDropdown({
 	Options = {"Key card","Crude Knife", "Hammer"},
 	Callback = function(v)
         plr = game:GetService("Players").LocalPlayer
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
         function unsit()
             plr.Character:FindFirstChildOfClass("Humanoid").Sit = false
@@ -234,10 +224,10 @@ GunTab:AddDropdown({
             local saved = game:GetService("Players").LocalPlayer.Character:GetPrimaryPartCFrame()
             if workspace.Prison_ITEMS.single:FindFirstChild(Item) and workspace.Prison_ITEMS.single:FindFirstChild(Item):FindFirstChild("ITEMPICKUP") then
                 Item =workspace.Prison_ITEMS.single:FindFirstChild(Item)
-                local ohInstance1 = Item:FindFirstChildOfClass("Part")
+                local ohInstance1 = Item:FindFirstChildOfClass("Part") or Item:FindFirstChildOfClass("UnionOperation")
                 MoveTo(CFrame.new(ohInstance1.Position))
                 repeat wait()
-                    local ohInstance1 = Item:FindFirstChildOfClass("Part")
+                    local ohInstance1 = Item:FindFirstChildOfClass("Part") or Item:FindFirstChildOfClass("UnionOperation")
                     MoveTo(CFrame.new(ohInstance1.Position))
                     task.spawn(function()
                         workspace.Remote.ItemHandler:InvokeServer(ohInstance1)
@@ -251,6 +241,8 @@ GunTab:AddDropdown({
         end
 
         GetItem(v,true)
+		wait(.25)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
 
@@ -308,10 +300,10 @@ GunTab:AddDropdown({
 			module["MaxAmmo"] = math.huge
 			module["CurrentAmmo"] = math.huge
 			module["StoredAmmo"] = math.huge
-			module["FireRate"] = 0.000001
-			module["Spread"] = 0
-			module["Range"] = math.huge
-			module["ReloadTime"] = 0.000001
+			module["FireRate"] = 0.01
+			module["Spread"] = 1
+			module["Range"] = 500
+			module["ReloadTime"] = 0.01
 			module["AutoFire"] = true
 		end
 	end    
@@ -502,16 +494,54 @@ TPTab:AddButton({
   	end    
 })
 
+TPTab:AddButton({
+	Name = "Cafeteria",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(931.542542, 99.9899368, 2294.22583, -0.999999285, 4.91239653e-08, 0.00120098412, 4.91538081e-08, 1, 2.48178331e-08, -0.00120098412, 2.4876849e-08, -0.999999285)
+		
+		you.CFrame = location
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Kitchen",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(692.41095, 101.476959, 2356.29834, -0.00726743788, 0.00668678479, 0.999951243, -1.0504421e-05, 0.999977648, -0.00668703718, -0.999973595, -5.90996169e-05, -0.00726720458)
+		
+		you.CFrame = location
+  	end    
+})
+
+TPTab:AddButton({
+	Name = "Glitch Room",
+	Callback = function()
+        local you = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local location = CFrame.new(919.5354, 99.9899368, 2233.21289, -0.999982774, -1.91831422e-08, 0.00587368105, -1.87098905e-08, 1, 8.06266911e-08, -0.00587368105, 8.05154059e-08, -0.999982774)
+		
+		you.CFrame = location
+  	end    
+})
+
+-- TURNS YOU INTO A CRIMINAL
 TeamTab:AddButton({
 	Name = "Criminal",
 	Callback = function()
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		local location =  CFrame.new(-324.440582, 54.174263, 1850.27734, -0.424231559, -3.1885655e-08, -0.905553758, -5.62539242e-08, 1, -8.85752538e-09, 0.905553758, 4.71833097e-08, -0.424231559)
 		
+		OrionLib:MakeNotification({
+			Name = "Note!",
+			Content = "It will take 5 seconds for you to become a criminal and teleport you back!",
+			Image = "rbxassetid://15910982486",
+			Time = 5
+		})
+
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
-		wait(3.5)
+		wait(4.25)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
-  	end    
+  	end
 })
 
 TeamTab:AddLabel("Neutral coming soon.")
@@ -525,6 +555,12 @@ InfoTab:AddButton({
         toclipboard("https://discord.gg/PDxxpQ3nqm")
   	end    
 })
+
+InfoTab:AddLabel("Join the discord to support us!")
+InfoTab:AddLabel("We also take suggestions.")
+InfoTab:AddLabel("If you find any bugs just DM me.")
+
+InfoTab:AddLabel("Last updated: 1/7/2023")
 
 InfoTab:AddButton({
 	Name = "Delete UI",
