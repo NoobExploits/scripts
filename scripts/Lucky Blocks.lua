@@ -79,4 +79,4 @@ BlocksTab:AddToggle({ Name = "Loop Give Diamond Lucky Block", Default = false, C
 BlocksTab:AddToggle({ Name = "Loop Give Rainbow Lucky Block", Default = false, Callback = function(Value) getgenv().rb = Value if Value then spawnrb() end end })
 BlocksTab:AddToggle({ Name = "Loop Give Galaxy Lucky Block", Default = false, Callback = function(Value) getgenv().gb = Value if Value then spawngb() end end })
 
-OrionLib:Destroy()
+OrionLib:Init()
