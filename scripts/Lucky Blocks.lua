@@ -44,7 +44,8 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "Impact Hub | LUCKY BLOCKS Battlegrounds", HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
 
 local LocalPlrTab = Window:MakeTab({Name = "Local Player", Icon = "rbxassetid://15862434941",PremiumOnly = false })
-local BlocksTab = Window:MakeTab({Name = "Blocks", Icon = "rbxassetid://15913830781",PremiumOnly = false })
+local BlocksTab = Window:MakeTab({Name = "Game", Icon = "rbxassetid://15913830781",PremiumOnly = false })
+local InfoTab = Window:MakeTab({Name = "Info", Icon = "rbxassetid://15841490359",PremiumOnly = false })
 
 LocalPlrTab:AddSlider({
 	Name = "Walkspeed",
@@ -118,6 +119,27 @@ BlocksTab:AddButton({
 	Callback = function()
         game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
     end    
+})
+
+InfoTab:AddButton({
+	Name = "Discord (Copys To Clipboard)",
+	Callback = function()
+        setclipboard("https://discord.gg/PDxxpQ3nqm")
+        toclipboard("https://discord.gg/PDxxpQ3nqm")
+  	end    
+})
+
+InfoTab:AddLabel("Join the discord to support us!")
+InfoTab:AddLabel("We also take suggestions.")
+InfoTab:AddLabel("If you find any bugs just DM me.")
+
+InfoTab:AddLabel("Last updated: 1/7/2023")
+
+InfoTab:AddButton({
+	Name = "Delete UI",
+	Callback = function()
+        OrionLib:Destroy()
+  	end    
 })
 
 OrionLib:Init()
