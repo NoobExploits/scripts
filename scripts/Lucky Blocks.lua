@@ -8,6 +8,7 @@ function spawnyb()
 	spawn(function()
 		while getgenv().yb == true do
 			game:GetService("ReplicatedStorage").SpawnLuckyBlock:FireServer()
+            task.wait()
 		end
 	end)
 end
@@ -16,6 +17,7 @@ function spawnsb()
 	spawn(function()
 		while getgenv().sb == true do
 			game:GetService("ReplicatedStorage").SpawnDiamondBlock:FireServer()
+            task.wait()
 		end
 	end)
 end
@@ -24,6 +26,7 @@ function spawnrb()
 	spawn(function()
 		while getgenv().rb == true do
 			game:GetService("ReplicatedStorage").SpawnRainbowBlock:FireServer()
+            task.wait()
 		end
 	end)
 end
@@ -32,6 +35,7 @@ function spawngb()
 	spawn(function()
 		while getgenv().gb == true do
 			game:GetService("ReplicatedStorage").SpawnGalaxyBlock:FireServer()
+            task.wait()
 		end
 	end)
 end
