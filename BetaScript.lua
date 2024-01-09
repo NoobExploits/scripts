@@ -69,7 +69,7 @@ function killAura()
 					end
 				end 
 			end
-			task.wait()
+			wait()
 		end
 	end)
 end
@@ -131,9 +131,16 @@ TPTab:AddButton({
 GameTab:AddButton({
 	Name = "Remove Doors",
 	Callback = function()
-		game:GetService("Workspace").Doors:Destroy()
-		workspace.Prison_Cellblock.doors:Destroy()
-		
+		game:GetService("Workspace").Doors.Parent = Lighting
+		workspace.Prison_Cellblock.doors.Parent = Lighting
+  	end    
+})
+
+GameTab:AddButton({
+	Name = "Restore Doors",
+	Callback = function()
+		Lighting.Doors.Parent = workspace
+		Lighting.Prison_Cellblock.doors.Parent = workspace.Prison_Cellblock
   	end    
 })
 
