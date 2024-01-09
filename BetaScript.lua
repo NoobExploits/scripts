@@ -139,8 +139,8 @@ GameTab:AddButton({
 GameTab:AddButton({
 	Name = "Restore Doors",
 	Callback = function()
-		InsertService.Doors.Parent = workspace
-		InsertService.Prison_Cellblock.doors.Parent = workspace.Prison_Cellblock
+		game:GetService("InsertService").Doors.Parent = game:GetService("workspace")
+		game:GetService("InsertService").doors.Parent = game:GetService("workspace").Prison_Cellblock
   	end    
 })
 
