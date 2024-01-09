@@ -131,16 +131,16 @@ TPTab:AddButton({
 GameTab:AddButton({
 	Name = "Remove Doors",
 	Callback = function()
-		game:GetService("Workspace").Doors.Parent = Lighting
-		workspace.Prison_Cellblock.doors.Parent = Lighting
+		workspace.Doors.Parent = game:GetService("InsertService")
+		workspace.Prison_Cellblock.doors.Parent = game:GetService("InsertService")
   	end    
 })
 
 GameTab:AddButton({
 	Name = "Restore Doors",
 	Callback = function()
-		Lighting.Doors.Parent = workspace
-		Lighting.Prison_Cellblock.doors.Parent = workspace.Prison_Cellblock
+		InsertService.Doors.Parent = workspace
+		InsertService.Prison_Cellblock.doors.Parent = workspace.Prison_Cellblock
   	end    
 })
 
