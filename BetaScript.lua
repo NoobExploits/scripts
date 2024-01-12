@@ -1,3 +1,5 @@
+local GetName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+
 getgenv().spamSoond = false
 getgenv().stopsounds = false
 getgenv().ka = false
@@ -57,6 +59,7 @@ end
 function killAura()
 	spawn(function()
 		while getgenv().ka == true do
+			local Pop = game:GetService("Players"):GetPlayers()
 			for _,player in next,game:GetService'Players':GetPlayers() do
 				if player ~= game:GetService'Players'.LocalPlayer then
 					local args = { [1] = player }
@@ -75,7 +78,7 @@ function killAura()
 end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Impact Hub | Prison Life", HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
+local Window = OrionLib:MakeWindow({Name = "Impact Hub | "..GetName.Name, HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
 
 local LocalPlrTab = Window:MakeTab({Name = "Local Player", Icon = "rbxassetid://15862434941",PremiumOnly = false })
 local GunTab = Window:MakeTab({Name = "Guns", Icon = "rbxassetid://15862513462",PremiumOnly = false })
@@ -131,16 +134,8 @@ TPTab:AddButton({
 GameTab:AddButton({
 	Name = "Remove Doors",
 	Callback = function()
-		workspace.Doors.Parent = game:GetService("InsertService")
-		workspace.Prison_Cellblock.doors.Parent = game:GetService("InsertService")
-  	end    
-})
-
-GameTab:AddButton({
-	Name = "Restore Doors",
-	Callback = function()
-		game:GetService("InsertService").Doors.Parent = game:GetService("workspace")
-		game:GetService("InsertService").doors.Parent = game:GetService("workspace").Prison_Cellblock
+		game:GetService("Workspace").Doors:Destroy()
+		workspace.Prison_Cellblock.doors:Destroy()
   	end    
 })
 
@@ -405,7 +400,7 @@ GameTab:AddButton({
 			game.Lighting.FogStart = 800
 			game.Lighting.FogColor = Color3.new(135, 184, 214)
 			game.Lighting.OutdoorAmbient = Color3.new(222, 222, 222)
-			wait(0.001)
+			task.wait()
 		end
   	end    
 })
@@ -533,22 +528,23 @@ TPTab:AddButton({
   	end    
 })
 
+
 -- TURNS YOU INTO A CRIMINAL
 TeamTab:AddButton({
 	Name = "Criminal",
 	Callback = function()
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		local location =  CFrame.new(-324.440582, 54.174263, 1850.27734, -0.424231559, -3.1885655e-08, -0.905553758, -5.62539242e-08, 1, -8.85752538e-09, 0.905553758, 4.71833097e-08, -0.424231559)
+		local location =  CFrame.new(-920.399963, 96.8095779, 2138.25317, 0.00718167285, -0.0073257396, -0.999947369, -1.25340976e-05, 0.999973178, -0.00732601853, 0.999974191, 6.51548107e-05, 0.00718138926)
 		
 		OrionLib:MakeNotification({
 			Name = "Note!",
-			Content = "It will take 5 seconds for you to become a criminal and teleport you back!",
+			Content = "It will take 2 seconds for you to become a criminal and teleport you back!",
 			Image = "rbxassetid://15910982486",
-			Time = 5
+			Time = 2
 		})
 
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
-		wait(4.25)
+		wait(2)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end
 })
