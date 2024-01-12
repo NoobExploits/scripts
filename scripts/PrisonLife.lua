@@ -1,3 +1,5 @@
+local GetName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+
 getgenv().spamSoond = false
 getgenv().stopsounds = false
 getgenv().ka = false
@@ -57,6 +59,7 @@ end
 function killAura()
 	spawn(function()
 		while getgenv().ka == true do
+			local Pop = game:GetService("Players"):GetPlayers()
 			for _,player in next,game:GetService'Players':GetPlayers() do
 				if player ~= game:GetService'Players'.LocalPlayer then
 					local args = { [1] = player }
@@ -75,7 +78,7 @@ function killAura()
 end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Impact Hub | Prison Life", HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
+local Window = OrionLib:MakeWindow({Name = "Impact Hub | "..GetName.Name, HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
 
 local LocalPlrTab = Window:MakeTab({Name = "Local Player", Icon = "rbxassetid://15862434941",PremiumOnly = false })
 local GunTab = Window:MakeTab({Name = "Guns", Icon = "rbxassetid://15862513462",PremiumOnly = false })
@@ -133,7 +136,6 @@ GameTab:AddButton({
 	Callback = function()
 		game:GetService("Workspace").Doors:Destroy()
 		workspace.Prison_Cellblock.doors:Destroy()
-		
   	end    
 })
 
@@ -388,21 +390,6 @@ LocalPlrTab:AddToggle({
 	end    
 })
 
-GameTab:AddButton({
-	Name = "Always Day",
-	Callback = function()
-        while true do
-			game.Lighting.ClockTime = 6.8
-			game.Lighting.Brightness = 1
-			game.Lighting.FogEnd = 1400
-			game.Lighting.FogStart = 800
-			game.Lighting.FogColor = Color3.new(135, 184, 214)
-			game.Lighting.OutdoorAmbient = Color3.new(222, 222, 222)
-			wait(0.001)
-		end
-  	end    
-})
-
 TPTab:AddButton({
 	Name = "Hiding Spot",
 	Callback = function()
@@ -467,6 +454,31 @@ TPTab:AddButton({
 TeamTab:AddButton({
 	Name = "Cop",
 	Callback = function()
+		workspace.Remote.TeamEvent:FireServer("Bright blue")
+  	end    
+})
+
+TeamTab:AddButton({
+	Name = "Prisoner",
+	Callback = function()
+        workspace.Remote.TeamEvent:FireServer("Bright orange")
+  	end    
+})
+
+TeamTab:AddButton({
+	Name = "Criminal",
+	Callback = function()
+		local location =  CFrame.new(-920.399963, 96.8095779, 2138.25317, 0.00718167285, -0.0073257396, -0.999947369, -1.25340976e-05, 0.999973178, -0.00732601853, 0.999974191, 6.51548107e-05, 0.00718138926)
+
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
+  	end
+})
+
+TeamTab:AddLabel("TP Back To Original Location Below")
+
+TeamTab:AddButton({
+	Name = "Cop",
+	Callback = function()
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		
 		workspace.Remote.TeamEvent:FireServer("Bright blue")
@@ -484,6 +496,18 @@ TeamTab:AddButton({
 		wait(1.5)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
+})
+
+TeamTab:AddButton({
+	Name = "Criminal",
+	Callback = function()
+		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		local location =  CFrame.new(-920.399963, 96.8095779, 2138.25317, 0.00718167285, -0.0073257396, -0.999947369, -1.25340976e-05, 0.999973178, -0.00732601853, 0.999974191, 6.51548107e-05, 0.00718138926)
+
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
+		wait(1)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
+  	end
 })
 
 TPTab:AddButton({
@@ -526,25 +550,7 @@ TPTab:AddButton({
   	end    
 })
 
--- TURNS YOU INTO A CRIMINAL
-TeamTab:AddButton({
-	Name = "Criminal",
-	Callback = function()
-		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-		local location =  CFrame.new(-324.440582, 54.174263, 1850.27734, -0.424231559, -3.1885655e-08, -0.905553758, -5.62539242e-08, 1, -8.85752538e-09, 0.905553758, 4.71833097e-08, -0.424231559)
-		
-		OrionLib:MakeNotification({
-			Name = "Note!",
-			Content = "It will take 5 seconds for you to become a criminal and teleport you back!",
-			Image = "rbxassetid://15910982486",
-			Time = 5
-		})
 
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
-		wait(4.25)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
-  	end
-})
 
 TeamTab:AddLabel("Neutral coming soon.")
 ExploitsTab:AddLabel("Warning: This will make you lag the longer you have it enabled!")
