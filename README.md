@@ -5,9 +5,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobExploits/Scripts-
 
 # Suported Games
 ### Prison Life
-> https://www.roblox.com/games/155615604/
-> Showcase: https://www.youtube.com/watch?v=155ofKfOxsg
+- > Link: https://www.roblox.com/games/155615604/
+- > Showcase: https://www.youtube.com/watch?v=155ofKfOxsg
 
 ### Lucky Blocks Battlegrounds
-> https://www.roblox.com/games/662417684/
-> Showcase: None is just like every other LBB script ig
+- > Link: https://www.roblox.com/games/662417684/
+- > Showcase: None is just like every other LBB script ig
