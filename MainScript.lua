@@ -1,6 +1,6 @@
 local games = {
-    [{155615604}] = "https://raw.githubusercontent.com/NoobExploits/Scripts-ROBLOX/main/scripts/PrisonLife.lua",
-    [{662417684}] = "https://raw.githubusercontent.com/NoobExploits/Scripts-ROBLOX/main/scripts/Lucky%20Blocks.lua",
+    [{155615604}] = "https://raw.githubusercontent.com/NoobExploits/scripts/main/scripts/PrisonLife.lua",
+    [{662417684}] = "https://raw.githubusercontent.com/NoobExploits/scripts/main/scripts/Lucky%20Blocks.lua",
 }
 
 for ids, url in next, games do
