@@ -22,17 +22,6 @@
             color: #555;
         }
     </style>
-    <script>
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            alert('Copied to clipboard');
-        }
-    </script>
 </head>
 <body>
     <h1>Script Listings</h1>
@@ -40,15 +29,20 @@
     <h2>Available Scripts</h2>
     <ul>
         <li>
-            <strong>Impact Hub:</strong>
-            <span class="copy-button" onclick="copyToClipboard('loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobExploits/scripts/main/MainScript.lua"))()')">Copy to Clipboard</span>
-            <p class="script-description">Supports: Prison Life + Lucky Block Battleground (https://www.youtube.com/watch?v=155ofKfOxsg)</p>
-        </li>
-        <li>
-            <strong>test:</strong>
-            <span class="copy-button" onclick="copyToClipboard('test')">Copy to Clipboard</span>
+            <strong>Impact Hub</strong>
+            <span class="copy-button" onclick="copyToClipboard('loadstring(game:HttpGet(&quot;https://raw.githubusercontent.com/NoobExploits/scripts/main/MainScript.lua&quot;))()')">Copy to Clipboard</span>
             <p class="script-description">test</p>
         </li>
     </ul>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard');
+            }).catch(err => {
+                console.error('Failed to copy to clipboard: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
