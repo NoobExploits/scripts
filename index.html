@@ -10,22 +10,29 @@
             margin: 20px;
         }
 
-        h1, h2 {
-            color: #333;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        a {
+        .copy-button {
+            cursor: pointer;
             color: blue;
+            text-decoration: underline;
+        }
+
+        .script-description {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            color: #555;
         }
     </style>
+    <script>
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Copied to clipboard');
+        }
+    </script>
 </head>
 <body>
     <h1>Script Listings</h1>
@@ -34,11 +41,13 @@
     <ul>
         <li>
             <strong>Impact Hub:</strong>
-            <a href="loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobExploits/scripts/main/MainScript.lua"))()">Download/View</a>
+            <span class="copy-button" onclick="copyToClipboard('loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobExploits/scripts/main/MainScript.lua"))()')">Copy to Clipboard</span>
+            <p class="script-description">Supports: Prison Life + Lucky Block Battleground (https://www.youtube.com/watch?v=155ofKfOxsg)</p>
         </li>
         <li>
             <strong>test:</strong>
-            <a href="test">Download/View</a>
+            <span class="copy-button" onclick="copyToClipboard('test')">Copy to Clipboard</span>
+            <p class="script-description">test</p>
         </li>
     </ul>
 </body>
