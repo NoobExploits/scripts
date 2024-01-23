@@ -1,3 +1,4 @@
+-- local skid: https://github.com/Riotscripter
 local GetName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 
 getgenv().spamSoond = false
