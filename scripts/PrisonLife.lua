@@ -6,13 +6,6 @@ getgenv().stopsounds = false
 getgenv().ka = false
 
 local LocalPlayer = game.Players.LocalPlayer
--- yes i stole this from alsploit cry me a river i was to lazy to write it all its just one thing and it doesnt even do anything basically
-task.spawn(function()
-	if not makefolder then LocalPlayer:Kick("Your executor does not support making folders saving?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-	if not writefile then LocalPlayer:Kick("Your executor does not support writing folders?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-	if not readfile then LocalPlayer:Kick("Your executor does not support reading files?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-	if not isfile then LocalPlayer:Kick("Your executor does not support returning files?? Switch to Fluxus | discord.gg/PDxxpQ3nqm") end
-end)
 
 function stopSound()
 	while getgenv().stopsounds == true do
@@ -464,6 +457,13 @@ TeamTab:AddButton({
 	Callback = function()
         workspace.Remote.TeamEvent:FireServer("Bright orange")
   	end    
+})
+
+OrionLib:MakeNotification({
+	Name = "Skid Alert!",
+	Content = "Hello, looks like a skid named Riotscripter has skidded my script who would of thought a mobile player would do it and call it his own lmao",
+	Image = "rbxassetid://4483345998",
+	Time = 2
 })
 
 TeamTab:AddButton({
