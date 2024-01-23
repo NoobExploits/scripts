@@ -1,4 +1,4 @@
-local AlSploitApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/AlSploit/main/Api"))()
+local AlSploitApi = loadstring(game:HttpGet("https://raw.githubusercontent.com/NoobExploits/scripts/main/not%20my%20scripts/aisploit%20api"))()
 
 local LocalPlayer = game.Players.LocalPlayer
 
