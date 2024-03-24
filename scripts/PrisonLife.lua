@@ -1,11 +1,11 @@
 -- local skid: https://github.com/Riotscripter
 local GetName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+local Inviter=loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+local LocalPlayer = game.Players.LocalPlayer
 
 getgenv().spamSoond = false
 getgenv().stopsounds = false
 getgenv().ka = false
-
-local LocalPlayer = game.Players.LocalPlayer
 
 function stopSound()
 	while getgenv().stopsounds == true do
@@ -558,10 +558,10 @@ ExploitsTab:AddLabel("Warning: This will make you lag the longer you have it ena
 ExploitsTab:AddLabel("Stop sounds is broken.")
 
 InfoTab:AddButton({
-	Name = "Discord (Copys To Clipboard)",
+	Name = "Join Discord",
 	Callback = function()
-        setclipboard("https://discord.gg/PDxxpQ3nqm")
-        toclipboard("https://discord.gg/PDxxpQ3nqm")
+	Inviter.Prompt({name = "Impact",invite = "discord.gg/PDxxpQ3nqm"})
+	Inviter.Join("discord.gg/PDxxpQ3nqm")
   	end    
 })
 
@@ -569,7 +569,7 @@ InfoTab:AddLabel("Join the discord to support us!")
 InfoTab:AddLabel("We also take suggestions.")
 InfoTab:AddLabel("If you find any bugs just DM me.")
 
-InfoTab:AddLabel("Last updated: 1/23/2024")
+InfoTab:AddLabel("Last updated: 3/24/2024")
 
 InfoTab:AddButton({
 	Name = "Delete UI",
