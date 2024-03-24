@@ -66,7 +66,7 @@ function killAura()
 					end
 				end 
 			end
-			wait()
+			task.wait()
 		end
 	end)
 end
@@ -91,9 +91,9 @@ GameTab:AddButton({
 		
 		
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = gate.CFrame
-		wait(.2)
+		task.wait(.2)
 		workspace.Remote.ItemHandler:InvokeServer(unpack(args))
-		wait(.1)
+		task.wait(.1)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
@@ -174,13 +174,13 @@ GunTab:AddDropdown({
                 Item =workspace.Prison_ITEMS.giver:FindFirstChild(Item)
                 local ohInstance1 = Item:FindFirstChildOfClass("Part")
                 MoveTo(CFrame.new(ohInstance1.Position))
-                repeat wait()
+                repeat task.wait()
                     local ohInstance1 = Item:FindFirstChildOfClass("Part")
                     MoveTo(CFrame.new(ohInstance1.Position))
                     task.spawn(function()
                         workspace.Remote.ItemHandler:InvokeServer(ohInstance1)
                     end)
-                    wait()
+                    task.wait()
                 until plr.Backpack:FindFirstChild(Item.Name) or plr.Character:FindFirstChild(Item.Name)
             end
             if Ignore ~= true then
@@ -189,7 +189,7 @@ GunTab:AddDropdown({
         end
 
         GetGun(v,true)
-		wait(.25)
+		task.wait(.25)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
@@ -224,13 +224,13 @@ GunTab:AddDropdown({
                 Item =workspace.Prison_ITEMS.single:FindFirstChild(Item)
                 local ohInstance1 = Item:FindFirstChildOfClass("Part") or Item:FindFirstChildOfClass("UnionOperation")
                 MoveTo(CFrame.new(ohInstance1.Position))
-                repeat wait()
+                repeat task.wait()
                     local ohInstance1 = Item:FindFirstChildOfClass("Part") or Item:FindFirstChildOfClass("UnionOperation")
                     MoveTo(CFrame.new(ohInstance1.Position))
                     task.spawn(function()
                         workspace.Remote.ItemHandler:InvokeServer(ohInstance1)
                     end)
-                    wait()
+                    task.wait()
                 until plr.Backpack:FindFirstChild(Item.Name) or plr.Character:FindFirstChild(Item.Name)
             end
             if Ignore ~= true then
@@ -239,7 +239,7 @@ GunTab:AddDropdown({
         end
 
         GetItem(v,true)
-		wait(.25)
+		task.wait(.25)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
 	end    
 })
@@ -483,7 +483,7 @@ TeamTab:AddButton({
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		
 		workspace.Remote.TeamEvent:FireServer("Bright blue")
-		wait(1.5)
+		task.wait(1.5)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
@@ -494,7 +494,7 @@ TeamTab:AddButton({
 		local currentCframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
         workspace.Remote.TeamEvent:FireServer("Bright orange")
-		wait(1.5)
+		task.wait(1.5)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end    
 })
@@ -506,7 +506,7 @@ TeamTab:AddButton({
 		local location =  CFrame.new(-920.399963, 96.8095779, 2138.25317, 0.00718167285, -0.0073257396, -0.999947369, -1.25340976e-05, 0.999973178, -0.00732601853, 0.999974191, 6.51548107e-05, 0.00718138926)
 
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = location
-		wait(1)
+		task.wait(1)
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = currentCframe
   	end
 })
