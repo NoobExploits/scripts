@@ -1,3 +1,6 @@
+local GetName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+local Inviter=loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Discord%20Inviter/Source.lua"))()
+
 getgenv().yb = false
 getgenv().sb = false
 getgenv().db = false
@@ -41,7 +44,7 @@ function spawngb()
 end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Impact Hub | LUCKY BLOCKS Battlegrounds", HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
+local Window = OrionLib:MakeWindow({Name = "Impact Hub | "..GetName.Name, HidePremium = false, SaveConfig = true, ConfigFolder = "Impact", IntroEnabled = false})
 
 local LocalPlrTab = Window:MakeTab({Name = "Local Player", Icon = "rbxassetid://15862434941",PremiumOnly = false })
 local BlocksTab = Window:MakeTab({Name = "Game", Icon = "rbxassetid://15913830781",PremiumOnly = false })
@@ -122,10 +125,10 @@ BlocksTab:AddButton({
 })
 
 InfoTab:AddButton({
-	Name = "Discord (Copys To Clipboard)",
+	Name = "Join Discord",
 	Callback = function()
-        setclipboard("https://discord.gg/PDxxpQ3nqm")
-        toclipboard("https://discord.gg/PDxxpQ3nqm")
+	Inviter.Prompt({name = "Impact",invite = "discord.gg/PDxxpQ3nqm"})
+	Inviter.Join("discord.gg/PDxxpQ3nqm")
   	end    
 })
 
@@ -133,7 +136,7 @@ InfoTab:AddLabel("Join the discord to support us!")
 InfoTab:AddLabel("We also take suggestions.")
 InfoTab:AddLabel("If you find any bugs just DM me.")
 
-InfoTab:AddLabel("Last updated: 1/7/2024")
+InfoTab:AddLabel("Last updated: 3/24/2024")
 
 InfoTab:AddButton({
 	Name = "Delete UI",
